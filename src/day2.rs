@@ -1,20 +1,20 @@
 use std::{fs, str::FromStr};
 
 pub fn advent_2() {
-    let score1: i32 = fs::read_to_string("inputs/day2")
-        .unwrap()
+    let input = fs::read_to_string("inputs/day2").unwrap();
+
+    let score1: i32 = input
         .lines()
         .map(|x| Battle::try_from(x).unwrap().calc_points())
         .sum();
 
-    let score2: i32 = fs::read_to_string("inputs/day2")
-        .unwrap()
+    let score2: i32 = input
         .lines()
         .map(|x| FixedBattle::try_from(x).unwrap().as_battle().calc_points())
         .sum();
 
-    println!("score 1: {}", score1);
-    println!("score 2: {}", score2);
+    println!("score 1: {score1}");
+    println!("score 2: {score2}");
 }
 
 struct FixedBattle {
@@ -53,15 +53,15 @@ impl TryFrom<&str> for FixedBattle {
     type Error = &'static str;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let inputs: Vec<&str> = value.split(" ").collect();
+        let inputs: Vec<&str> = value.split_whitespace().collect();
 
-        if inputs.len() != 2 {
-            Err("should have two elements")
-        } else {
+        if inputs.len() == 2 {
             Ok(FixedBattle {
                 opp: Choice::from_str(inputs[0])?,
                 outcome: Outcome::from_str(inputs[1])?,
             })
+        } else {
+            Err("should have two elements")
         }
     }
 }
@@ -115,7 +115,10 @@ impl FromStr for Battle {
     type Err = &'static str;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let choices: Vec<Choice> = s.split(" ").map(|x| Choice::from_str(x).unwrap()).collect();
+        let choices: Vec<Choice> = s
+            .split_whitespace()
+            .map(|x| Choice::from_str(x).unwrap())
+            .collect();
 
         if choices.len() != 2 {
             return Err("should have two elements");
@@ -133,7 +136,7 @@ impl TryFrom<&str> for Battle {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         let choices: Vec<Choice> = value
-            .split(" ")
+            .split_whitespace()
             .map(|x| Choice::from_str(x).unwrap())
             .collect();
 
