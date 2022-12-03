@@ -2,8 +2,9 @@
 
 ## Notes 
 
-Day | Comment             |
---- | -------             |
-1   | Oneliners ftw :P    |
-2   | Overengineering ftw |
+Day | Comment                 |
+--- | -------                 |
+1   | Oneliners ftw :P        |
+2   | Overengineering ftw     |
+3   | Don't look it's hideous |
 

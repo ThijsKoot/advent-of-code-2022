@@ -15,7 +15,8 @@ macro_rules! dispatch_to {
 fn dispatch(s: &str) {
     dispatch_to!( s => {
         advent_1,
-        advent_2
+        advent_2,
+        advent_3
     });
 }
 
