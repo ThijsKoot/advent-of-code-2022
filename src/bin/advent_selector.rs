@@ -16,7 +16,8 @@ fn dispatch(s: &str) {
     dispatch_to!( s => {
         advent_1,
         advent_2,
-        advent_3
+        advent_3,
+        advent_4
     });
 }
 
